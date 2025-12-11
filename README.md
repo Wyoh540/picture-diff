@@ -1,14 +1,22 @@
-# 图片差异检测 API
+# 图片差异检测
 
-一个用于找不同游戏的图片差异检测 FastAPI 服务。自动从游戏截图中提取上下两张图片，检测并标记差异区域。
+一个用于找不同游戏的图片差异检测应用。包含 FastAPI 后端服务和现代化 Web 前端界面，自动从游戏截图中提取上下两张图片，检测并标记差异区域。
 
 ## 功能特性
 
+### 后端服务
 - 🔍 **自动提取**: 从游戏截图中自动提取上下两张待比较图片
 - 🎯 **差异检测**: 精确检测两张图片的差异区域
 - ⭕ **可视化标记**: 用圆圈标记差异位置，并添加编号
 - 🌡️ **热力图生成**: 生成差异热力图，直观展示差异程度
 - 📦 **多种输出格式**: 支持 Base64 返回或保存到本地文件
+
+### 前端界面
+- 🌐 **Web 界面**: 打开浏览器即可进行项目截图检测
+- 📤 **拖拽上传**: 支持拖拽或点击上传游戏截图
+- 🎨 **现代化 UI**: 基于 TanStack Router + React + Tailwind CSS 构建
+- 📊 **结果可视化**: 直观展示差异区域、对比标记图和热力图
+- 📱 **响应式设计**: 适配各种屏幕尺寸
 
 ## 快速开始
 
@@ -16,33 +24,45 @@
 
 - Python 3.11+
 - uv (推荐) 或 pip
+- Node.js 18+ (前端)
+- pnpm 或 npm (前端)
 
-### 安装依赖
+### 后端安装与启动
 
 ```bash
-# 使用 uv (推荐)
+# 安装依赖（使用 uv 推荐）
 uv sync
 
 # 或使用 pip
 pip install -e .
-```
 
-### 启动服务
-
-```bash
-# 开发模式（热重载）
+# 开发模式启动（热重载）
 uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
-# 生产模式
+# 生产模式启动
 uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-### 访问文档
+### 前端安装与启动
 
-启动服务后，访问以下地址查看 API 文档：
+```bash
+# 进入前端目录
+cd frontend
 
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
+# 安装依赖
+npm install
+
+# 开发模式启动
+npm run dev
+```
+
+### 访问应用
+
+启动后端和前端服务后，访问以下地址：
+
+- **Web 界面**: http://localhost:3001 - 打开浏览器进行项目截图检测
+- **API 文档 (Swagger UI)**: http://localhost:8000/docs
+- **API 文档 (ReDoc)**: http://localhost:8000/redoc
 
 ## API 接口
 
@@ -122,8 +142,8 @@ curl -X POST "http://localhost:8000/api/v1/diff/detect/save" \
 
 ```
 pic_diff/
-├── app/
-│   ├── __init__.py          # 应用初始化
+├── app/                      # 后端 FastAPI 应用
+│   ├── __init__.py           # 应用初始化
 │   ├── main.py               # FastAPI 入口
 │   ├── routers/
 │   │   ├── __init__.py
@@ -136,31 +156,70 @@ pic_diff/
 │   │   └── image_diff.py     # 核心业务逻辑
 │   └── utils/
 │       └── __init__.py
-├── pyproject.toml            # 项目配置
+├── frontend/                 # 前端 React 应用
+│   ├── src/
+│   │   ├── routes/           # 页面路由
+│   │   │   ├── __root.tsx    # 根布局
+│   │   │   └── index.tsx     # 主页（图片上传与检测）
+│   │   ├── client/           # API 客户端（OpenAPI 自动生成）
+│   │   └── main.tsx          # 应用入口
+│   ├── package.json          # 前端依赖配置
+│   └── vite.config.ts        # Vite 构建配置
+├── pyproject.toml            # Python 项目配置
 ├── README.md
 └── .gitignore
 ```
 
 ## 开发
 
-### 安装开发依赖
+### 后端开发
 
 ```bash
+# 安装开发依赖
 uv sync --extra dev
-```
 
-### 代码格式化
-
-```bash
+# 代码格式化
 uv run ruff format .
 uv run ruff check --fix .
-```
 
-### 运行测试
-
-```bash
+# 运行测试
 uv run pytest
 ```
+
+### 前端开发
+
+```bash
+cd frontend
+
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm run dev
+
+# 代码检查与格式化
+npm run lint
+npm run format
+npm run check
+
+# 构建生产版本
+npm run build
+
+# 运行测试
+npm run test
+
+# 更新 API 客户端（当后端 API 变更时）
+npm run openapi
+```
+
+### 前端技术栈
+
+- **框架**: React 19 + TanStack Router
+- **构建工具**: Vite
+- **样式**: Tailwind CSS
+- **UI 组件**: Shadcn/ui
+- **数据请求**: TanStack Query + OpenAPI 自动生成客户端
+- **类型检查**: TypeScript
 
 ## License
 

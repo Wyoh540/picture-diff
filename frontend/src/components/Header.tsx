@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router'
 
 import { useState } from 'react'
-import { Home, Menu, ScanSearch, X } from 'lucide-react'
+import { Home, Menu, Monitor, ScanSearch, X } from 'lucide-react'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -52,6 +52,18 @@ export default function Header() {
           >
             <Home size={20} />
             <span className="font-medium">首页</span>
+          </Link>
+          <Link
+            to="/screen"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+            activeProps={{
+              className:
+                'flex items-center gap-3 p-3 rounded-lg bg-purple-600 hover:bg-purple-700 transition-colors mb-2',
+            }}
+          >
+            <Monitor size={20} />
+            <span className="font-medium">手机屏幕</span>
           </Link>
         </nav>
       </aside>

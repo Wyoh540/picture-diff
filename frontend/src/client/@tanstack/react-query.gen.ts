@@ -4,8 +4,8 @@ import { type DefaultError, queryOptions, type UseMutationOptions } from '@tanst
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { detectAndSaveApiV1DiffDetectSavePost, detectDifferencesApiV1DiffDetectPost, detectDifferencesMetaApiV1DiffDetectMetaPost, healthCheckHealthGet, type Options, rootGet } from '../sdk.gen';
-import type { DetectAndSaveApiV1DiffDetectSavePostData, DetectAndSaveApiV1DiffDetectSavePostError, DetectAndSaveApiV1DiffDetectSavePostResponse, DetectDifferencesApiV1DiffDetectPostData, DetectDifferencesApiV1DiffDetectPostError, DetectDifferencesApiV1DiffDetectPostResponse, DetectDifferencesMetaApiV1DiffDetectMetaPostData, DetectDifferencesMetaApiV1DiffDetectMetaPostError, DetectDifferencesMetaApiV1DiffDetectMetaPostResponse, HealthCheckHealthGetData, HealthCheckHealthGetResponse, RootGetData } from '../types.gen';
+import { adbConnectApiV1ScrcpyAdbConnectPost, captureScreenshotApiV1AdbScreenshotGet, captureScreenshotApiV1ScrcpyScreenshotGet, captureScreenshotPostApiV1ScrcpyScreenshotPost, checkAvailableApiV1ScrcpyAvailableGet, checkInstallationApiV1ScrcpyInstallationGet, connectDeviceApiV1AdbConnectPost, connectDeviceApiV1ScrcpyConnectPost, detectAndSaveApiV1DiffDetectSavePost, detectDifferencesApiV1DiffDetectPost, detectDifferencesMetaApiV1DiffDetectMetaPost, disconnectDeviceApiV1AdbDisconnectPost, disconnectDeviceApiV1ScrcpyDisconnectPost, getClipboardApiV1ScrcpyClipboardGet, getDevicesApiV1AdbDevicesGet, getRecordingStatusApiV1ScrcpyRecordingStatusGet, getScreenInfoApiV1AdbScreenInfoGet, getStatusApiV1AdbStatusGet, getStatusApiV1ScrcpyStatusGet, healthCheckHealthGet, inputKeyeventApiV1AdbInputKeyeventPost, inputSwipeApiV1AdbInputSwipePost, inputTapApiV1AdbInputTapPost, inputTextApiV1AdbInputTextPost, listCamerasApiV1ScrcpyCamerasGet, listDevicesApiV1ScrcpyDevicesGet, listDisplaysApiV1ScrcpyDisplaysGet, listEncodersApiV1ScrcpyEncodersGet, type Options, rootGet, runScrcpyCommandApiV1ScrcpyCommandPost, startRecordingApiV1ScrcpyRecordingStartPost, stopRecordingApiV1ScrcpyRecordingStopPost } from '../sdk.gen';
+import type { AdbConnectApiV1ScrcpyAdbConnectPostData, AdbConnectApiV1ScrcpyAdbConnectPostError, AdbConnectApiV1ScrcpyAdbConnectPostResponse, CaptureScreenshotApiV1AdbScreenshotGetData, CaptureScreenshotApiV1AdbScreenshotGetResponse, CaptureScreenshotApiV1ScrcpyScreenshotGetData, CaptureScreenshotApiV1ScrcpyScreenshotGetError, CaptureScreenshotApiV1ScrcpyScreenshotGetResponse, CaptureScreenshotPostApiV1ScrcpyScreenshotPostData, CaptureScreenshotPostApiV1ScrcpyScreenshotPostError, CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponse, CheckAvailableApiV1ScrcpyAvailableGetData, CheckAvailableApiV1ScrcpyAvailableGetResponse, CheckInstallationApiV1ScrcpyInstallationGetData, CheckInstallationApiV1ScrcpyInstallationGetResponse, ConnectDeviceApiV1AdbConnectPostData, ConnectDeviceApiV1AdbConnectPostError, ConnectDeviceApiV1AdbConnectPostResponse, ConnectDeviceApiV1ScrcpyConnectPostData, ConnectDeviceApiV1ScrcpyConnectPostError, ConnectDeviceApiV1ScrcpyConnectPostResponse, DetectAndSaveApiV1DiffDetectSavePostData, DetectAndSaveApiV1DiffDetectSavePostError, DetectAndSaveApiV1DiffDetectSavePostResponse, DetectDifferencesApiV1DiffDetectPostData, DetectDifferencesApiV1DiffDetectPostError, DetectDifferencesApiV1DiffDetectPostResponse, DetectDifferencesMetaApiV1DiffDetectMetaPostData, DetectDifferencesMetaApiV1DiffDetectMetaPostError, DetectDifferencesMetaApiV1DiffDetectMetaPostResponse, DisconnectDeviceApiV1AdbDisconnectPostData, DisconnectDeviceApiV1AdbDisconnectPostResponse, DisconnectDeviceApiV1ScrcpyDisconnectPostData, DisconnectDeviceApiV1ScrcpyDisconnectPostResponse, GetClipboardApiV1ScrcpyClipboardGetData, GetClipboardApiV1ScrcpyClipboardGetResponse, GetDevicesApiV1AdbDevicesGetData, GetDevicesApiV1AdbDevicesGetResponse, GetRecordingStatusApiV1ScrcpyRecordingStatusGetData, GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponse, GetScreenInfoApiV1AdbScreenInfoGetData, GetScreenInfoApiV1AdbScreenInfoGetResponse, GetStatusApiV1AdbStatusGetData, GetStatusApiV1AdbStatusGetResponse, GetStatusApiV1ScrcpyStatusGetData, GetStatusApiV1ScrcpyStatusGetResponse, HealthCheckHealthGetData, HealthCheckHealthGetResponse, InputKeyeventApiV1AdbInputKeyeventPostData, InputKeyeventApiV1AdbInputKeyeventPostError, InputKeyeventApiV1AdbInputKeyeventPostResponse, InputSwipeApiV1AdbInputSwipePostData, InputSwipeApiV1AdbInputSwipePostError, InputSwipeApiV1AdbInputSwipePostResponse, InputTapApiV1AdbInputTapPostData, InputTapApiV1AdbInputTapPostError, InputTapApiV1AdbInputTapPostResponse, InputTextApiV1AdbInputTextPostData, InputTextApiV1AdbInputTextPostError, InputTextApiV1AdbInputTextPostResponse, ListCamerasApiV1ScrcpyCamerasGetData, ListCamerasApiV1ScrcpyCamerasGetError, ListDevicesApiV1ScrcpyDevicesGetData, ListDevicesApiV1ScrcpyDevicesGetResponse, ListDisplaysApiV1ScrcpyDisplaysGetData, ListDisplaysApiV1ScrcpyDisplaysGetError, ListEncodersApiV1ScrcpyEncodersGetData, ListEncodersApiV1ScrcpyEncodersGetError, RootGetData, RunScrcpyCommandApiV1ScrcpyCommandPostData, RunScrcpyCommandApiV1ScrcpyCommandPostError, RunScrcpyCommandApiV1ScrcpyCommandPostResponse, StartRecordingApiV1ScrcpyRecordingStartPostData, StartRecordingApiV1ScrcpyRecordingStartPostError, StartRecordingApiV1ScrcpyRecordingStartPostResponse, StopRecordingApiV1ScrcpyRecordingStopPostData, StopRecordingApiV1ScrcpyRecordingStopPostResponse } from '../types.gen';
 
 /**
  * 检测图片差异
@@ -64,6 +64,44 @@ export const detectAndSaveApiV1DiffDetectSavePostMutation = (options?: Partial<O
     return mutationOptions;
 };
 
+/**
+ * Connect Device
+ *
+ * 连接到 ADB 设备（无线调试）
+ */
+export const connectDeviceApiV1AdbConnectPostMutation = (options?: Partial<Options<ConnectDeviceApiV1AdbConnectPostData>>): UseMutationOptions<ConnectDeviceApiV1AdbConnectPostResponse, AxiosError<ConnectDeviceApiV1AdbConnectPostError>, Options<ConnectDeviceApiV1AdbConnectPostData>> => {
+    const mutationOptions: UseMutationOptions<ConnectDeviceApiV1AdbConnectPostResponse, AxiosError<ConnectDeviceApiV1AdbConnectPostError>, Options<ConnectDeviceApiV1AdbConnectPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await connectDeviceApiV1AdbConnectPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Disconnect Device
+ *
+ * 断开 ADB 连接
+ */
+export const disconnectDeviceApiV1AdbDisconnectPostMutation = (options?: Partial<Options<DisconnectDeviceApiV1AdbDisconnectPostData>>): UseMutationOptions<DisconnectDeviceApiV1AdbDisconnectPostResponse, AxiosError<DefaultError>, Options<DisconnectDeviceApiV1AdbDisconnectPostData>> => {
+    const mutationOptions: UseMutationOptions<DisconnectDeviceApiV1AdbDisconnectPostResponse, AxiosError<DefaultError>, Options<DisconnectDeviceApiV1AdbDisconnectPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await disconnectDeviceApiV1AdbDisconnectPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseURL' | 'body' | 'headers' | 'path' | 'query'> & {
         _id: string;
@@ -95,6 +133,519 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
         params.query = options.query;
     }
     return [params];
+};
+
+export const getStatusApiV1AdbStatusGetQueryKey = (options?: Options<GetStatusApiV1AdbStatusGetData>) => createQueryKey('getStatusApiV1AdbStatusGet', options);
+
+/**
+ * Get Status
+ *
+ * 获取 ADB 连接状态
+ */
+export const getStatusApiV1AdbStatusGetOptions = (options?: Options<GetStatusApiV1AdbStatusGetData>) => queryOptions<GetStatusApiV1AdbStatusGetResponse, AxiosError<DefaultError>, GetStatusApiV1AdbStatusGetResponse, ReturnType<typeof getStatusApiV1AdbStatusGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getStatusApiV1AdbStatusGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getStatusApiV1AdbStatusGetQueryKey(options)
+});
+
+export const captureScreenshotApiV1AdbScreenshotGetQueryKey = (options?: Options<CaptureScreenshotApiV1AdbScreenshotGetData>) => createQueryKey('captureScreenshotApiV1AdbScreenshotGet', options);
+
+/**
+ * Capture Screenshot
+ *
+ * 截取设备屏幕
+ */
+export const captureScreenshotApiV1AdbScreenshotGetOptions = (options?: Options<CaptureScreenshotApiV1AdbScreenshotGetData>) => queryOptions<CaptureScreenshotApiV1AdbScreenshotGetResponse, AxiosError<DefaultError>, CaptureScreenshotApiV1AdbScreenshotGetResponse, ReturnType<typeof captureScreenshotApiV1AdbScreenshotGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await captureScreenshotApiV1AdbScreenshotGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: captureScreenshotApiV1AdbScreenshotGetQueryKey(options)
+});
+
+export const getDevicesApiV1AdbDevicesGetQueryKey = (options?: Options<GetDevicesApiV1AdbDevicesGetData>) => createQueryKey('getDevicesApiV1AdbDevicesGet', options);
+
+/**
+ * Get Devices
+ *
+ * 获取已连接的设备列表
+ */
+export const getDevicesApiV1AdbDevicesGetOptions = (options?: Options<GetDevicesApiV1AdbDevicesGetData>) => queryOptions<GetDevicesApiV1AdbDevicesGetResponse, AxiosError<DefaultError>, GetDevicesApiV1AdbDevicesGetResponse, ReturnType<typeof getDevicesApiV1AdbDevicesGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getDevicesApiV1AdbDevicesGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getDevicesApiV1AdbDevicesGetQueryKey(options)
+});
+
+export const getScreenInfoApiV1AdbScreenInfoGetQueryKey = (options?: Options<GetScreenInfoApiV1AdbScreenInfoGetData>) => createQueryKey('getScreenInfoApiV1AdbScreenInfoGet', options);
+
+/**
+ * Get Screen Info
+ *
+ * 获取设备屏幕分辨率信息
+ */
+export const getScreenInfoApiV1AdbScreenInfoGetOptions = (options?: Options<GetScreenInfoApiV1AdbScreenInfoGetData>) => queryOptions<GetScreenInfoApiV1AdbScreenInfoGetResponse, AxiosError<DefaultError>, GetScreenInfoApiV1AdbScreenInfoGetResponse, ReturnType<typeof getScreenInfoApiV1AdbScreenInfoGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getScreenInfoApiV1AdbScreenInfoGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getScreenInfoApiV1AdbScreenInfoGetQueryKey(options)
+});
+
+/**
+ * Input Tap
+ *
+ * 模拟点击操作
+ */
+export const inputTapApiV1AdbInputTapPostMutation = (options?: Partial<Options<InputTapApiV1AdbInputTapPostData>>): UseMutationOptions<InputTapApiV1AdbInputTapPostResponse, AxiosError<InputTapApiV1AdbInputTapPostError>, Options<InputTapApiV1AdbInputTapPostData>> => {
+    const mutationOptions: UseMutationOptions<InputTapApiV1AdbInputTapPostResponse, AxiosError<InputTapApiV1AdbInputTapPostError>, Options<InputTapApiV1AdbInputTapPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await inputTapApiV1AdbInputTapPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Input Swipe
+ *
+ * 模拟滑动操作
+ */
+export const inputSwipeApiV1AdbInputSwipePostMutation = (options?: Partial<Options<InputSwipeApiV1AdbInputSwipePostData>>): UseMutationOptions<InputSwipeApiV1AdbInputSwipePostResponse, AxiosError<InputSwipeApiV1AdbInputSwipePostError>, Options<InputSwipeApiV1AdbInputSwipePostData>> => {
+    const mutationOptions: UseMutationOptions<InputSwipeApiV1AdbInputSwipePostResponse, AxiosError<InputSwipeApiV1AdbInputSwipePostError>, Options<InputSwipeApiV1AdbInputSwipePostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await inputSwipeApiV1AdbInputSwipePost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Input Keyevent
+ *
+ * 模拟按键操作
+ */
+export const inputKeyeventApiV1AdbInputKeyeventPostMutation = (options?: Partial<Options<InputKeyeventApiV1AdbInputKeyeventPostData>>): UseMutationOptions<InputKeyeventApiV1AdbInputKeyeventPostResponse, AxiosError<InputKeyeventApiV1AdbInputKeyeventPostError>, Options<InputKeyeventApiV1AdbInputKeyeventPostData>> => {
+    const mutationOptions: UseMutationOptions<InputKeyeventApiV1AdbInputKeyeventPostResponse, AxiosError<InputKeyeventApiV1AdbInputKeyeventPostError>, Options<InputKeyeventApiV1AdbInputKeyeventPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await inputKeyeventApiV1AdbInputKeyeventPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Input Text
+ *
+ * 输入文本
+ */
+export const inputTextApiV1AdbInputTextPostMutation = (options?: Partial<Options<InputTextApiV1AdbInputTextPostData>>): UseMutationOptions<InputTextApiV1AdbInputTextPostResponse, AxiosError<InputTextApiV1AdbInputTextPostError>, Options<InputTextApiV1AdbInputTextPostData>> => {
+    const mutationOptions: UseMutationOptions<InputTextApiV1AdbInputTextPostResponse, AxiosError<InputTextApiV1AdbInputTextPostError>, Options<InputTextApiV1AdbInputTextPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await inputTextApiV1AdbInputTextPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const checkAvailableApiV1ScrcpyAvailableGetQueryKey = (options?: Options<CheckAvailableApiV1ScrcpyAvailableGetData>) => createQueryKey('checkAvailableApiV1ScrcpyAvailableGet', options);
+
+/**
+ * Check Available
+ *
+ * 检查 scrcpy-client 是否可用
+ */
+export const checkAvailableApiV1ScrcpyAvailableGetOptions = (options?: Options<CheckAvailableApiV1ScrcpyAvailableGetData>) => queryOptions<CheckAvailableApiV1ScrcpyAvailableGetResponse, AxiosError<DefaultError>, CheckAvailableApiV1ScrcpyAvailableGetResponse, ReturnType<typeof checkAvailableApiV1ScrcpyAvailableGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await checkAvailableApiV1ScrcpyAvailableGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: checkAvailableApiV1ScrcpyAvailableGetQueryKey(options)
+});
+
+export const listDevicesApiV1ScrcpyDevicesGetQueryKey = (options?: Options<ListDevicesApiV1ScrcpyDevicesGetData>) => createQueryKey('listDevicesApiV1ScrcpyDevicesGet', options);
+
+/**
+ * List Devices
+ *
+ * 获取已连接的设备列表
+ */
+export const listDevicesApiV1ScrcpyDevicesGetOptions = (options?: Options<ListDevicesApiV1ScrcpyDevicesGetData>) => queryOptions<ListDevicesApiV1ScrcpyDevicesGetResponse, AxiosError<DefaultError>, ListDevicesApiV1ScrcpyDevicesGetResponse, ReturnType<typeof listDevicesApiV1ScrcpyDevicesGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await listDevicesApiV1ScrcpyDevicesGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: listDevicesApiV1ScrcpyDevicesGetQueryKey(options)
+});
+
+/**
+ * Adb Connect
+ *
+ * 通过 ADB 连接远程设备（用于无线调试）
+ */
+export const adbConnectApiV1ScrcpyAdbConnectPostMutation = (options?: Partial<Options<AdbConnectApiV1ScrcpyAdbConnectPostData>>): UseMutationOptions<AdbConnectApiV1ScrcpyAdbConnectPostResponse, AxiosError<AdbConnectApiV1ScrcpyAdbConnectPostError>, Options<AdbConnectApiV1ScrcpyAdbConnectPostData>> => {
+    const mutationOptions: UseMutationOptions<AdbConnectApiV1ScrcpyAdbConnectPostResponse, AxiosError<AdbConnectApiV1ScrcpyAdbConnectPostError>, Options<AdbConnectApiV1ScrcpyAdbConnectPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await adbConnectApiV1ScrcpyAdbConnectPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Connect Device
+ *
+ * 连接到设备并启动 scrcpy 视频流
+ *
+ * 如果不提供 device_serial，将使用第一个可用设备
+ */
+export const connectDeviceApiV1ScrcpyConnectPostMutation = (options?: Partial<Options<ConnectDeviceApiV1ScrcpyConnectPostData>>): UseMutationOptions<ConnectDeviceApiV1ScrcpyConnectPostResponse, AxiosError<ConnectDeviceApiV1ScrcpyConnectPostError>, Options<ConnectDeviceApiV1ScrcpyConnectPostData>> => {
+    const mutationOptions: UseMutationOptions<ConnectDeviceApiV1ScrcpyConnectPostResponse, AxiosError<ConnectDeviceApiV1ScrcpyConnectPostError>, Options<ConnectDeviceApiV1ScrcpyConnectPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await connectDeviceApiV1ScrcpyConnectPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Disconnect Device
+ *
+ * 断开 scrcpy 连接
+ */
+export const disconnectDeviceApiV1ScrcpyDisconnectPostMutation = (options?: Partial<Options<DisconnectDeviceApiV1ScrcpyDisconnectPostData>>): UseMutationOptions<DisconnectDeviceApiV1ScrcpyDisconnectPostResponse, AxiosError<DefaultError>, Options<DisconnectDeviceApiV1ScrcpyDisconnectPostData>> => {
+    const mutationOptions: UseMutationOptions<DisconnectDeviceApiV1ScrcpyDisconnectPostResponse, AxiosError<DefaultError>, Options<DisconnectDeviceApiV1ScrcpyDisconnectPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await disconnectDeviceApiV1ScrcpyDisconnectPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getStatusApiV1ScrcpyStatusGetQueryKey = (options?: Options<GetStatusApiV1ScrcpyStatusGetData>) => createQueryKey('getStatusApiV1ScrcpyStatusGet', options);
+
+/**
+ * Get Status
+ *
+ * 获取 scrcpy 连接状态
+ */
+export const getStatusApiV1ScrcpyStatusGetOptions = (options?: Options<GetStatusApiV1ScrcpyStatusGetData>) => queryOptions<GetStatusApiV1ScrcpyStatusGetResponse, AxiosError<DefaultError>, GetStatusApiV1ScrcpyStatusGetResponse, ReturnType<typeof getStatusApiV1ScrcpyStatusGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getStatusApiV1ScrcpyStatusGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getStatusApiV1ScrcpyStatusGetQueryKey(options)
+});
+
+export const captureScreenshotApiV1ScrcpyScreenshotGetQueryKey = (options?: Options<CaptureScreenshotApiV1ScrcpyScreenshotGetData>) => createQueryKey('captureScreenshotApiV1ScrcpyScreenshotGet', options);
+
+/**
+ * Capture Screenshot
+ *
+ * 截取设备屏幕（默认使用原始分辨率）
+ */
+export const captureScreenshotApiV1ScrcpyScreenshotGetOptions = (options?: Options<CaptureScreenshotApiV1ScrcpyScreenshotGetData>) => queryOptions<CaptureScreenshotApiV1ScrcpyScreenshotGetResponse, AxiosError<CaptureScreenshotApiV1ScrcpyScreenshotGetError>, CaptureScreenshotApiV1ScrcpyScreenshotGetResponse, ReturnType<typeof captureScreenshotApiV1ScrcpyScreenshotGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await captureScreenshotApiV1ScrcpyScreenshotGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: captureScreenshotApiV1ScrcpyScreenshotGetQueryKey(options)
+});
+
+/**
+ * Capture Screenshot Post
+ *
+ * 截取设备屏幕 (POST)（默认使用原始分辨率）
+ */
+export const captureScreenshotPostApiV1ScrcpyScreenshotPostMutation = (options?: Partial<Options<CaptureScreenshotPostApiV1ScrcpyScreenshotPostData>>): UseMutationOptions<CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponse, AxiosError<CaptureScreenshotPostApiV1ScrcpyScreenshotPostError>, Options<CaptureScreenshotPostApiV1ScrcpyScreenshotPostData>> => {
+    const mutationOptions: UseMutationOptions<CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponse, AxiosError<CaptureScreenshotPostApiV1ScrcpyScreenshotPostError>, Options<CaptureScreenshotPostApiV1ScrcpyScreenshotPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await captureScreenshotPostApiV1ScrcpyScreenshotPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getClipboardApiV1ScrcpyClipboardGetQueryKey = (options?: Options<GetClipboardApiV1ScrcpyClipboardGetData>) => createQueryKey('getClipboardApiV1ScrcpyClipboardGet', options);
+
+/**
+ * Get Clipboard
+ *
+ * 获取设备剪贴板内容（需要 Android 10+）
+ */
+export const getClipboardApiV1ScrcpyClipboardGetOptions = (options?: Options<GetClipboardApiV1ScrcpyClipboardGetData>) => queryOptions<GetClipboardApiV1ScrcpyClipboardGetResponse, AxiosError<DefaultError>, GetClipboardApiV1ScrcpyClipboardGetResponse, ReturnType<typeof getClipboardApiV1ScrcpyClipboardGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getClipboardApiV1ScrcpyClipboardGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getClipboardApiV1ScrcpyClipboardGetQueryKey(options)
+});
+
+export const checkInstallationApiV1ScrcpyInstallationGetQueryKey = (options?: Options<CheckInstallationApiV1ScrcpyInstallationGetData>) => createQueryKey('checkInstallationApiV1ScrcpyInstallationGet', options);
+
+/**
+ * Check Installation
+ *
+ * 检查 scrcpy 安装状态
+ *
+ * 返回 scrcpy 目录下各组件的存在状态
+ */
+export const checkInstallationApiV1ScrcpyInstallationGetOptions = (options?: Options<CheckInstallationApiV1ScrcpyInstallationGetData>) => queryOptions<CheckInstallationApiV1ScrcpyInstallationGetResponse, AxiosError<DefaultError>, CheckInstallationApiV1ScrcpyInstallationGetResponse, ReturnType<typeof checkInstallationApiV1ScrcpyInstallationGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await checkInstallationApiV1ScrcpyInstallationGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: checkInstallationApiV1ScrcpyInstallationGetQueryKey(options)
+});
+
+/**
+ * Start Recording
+ *
+ * 开始录制屏幕
+ *
+ * 使用 scrcpy.exe 进行录制。参考文档: https://github.com/Genymobile/scrcpy
+ *
+ * 注意：
+ * - 录制功能需要 scrcpy.exe 可执行文件
+ * - 支持 H.264、H.265、AV1 编码
+ * - 设置 no_playback=true 时只录制不显示画面
+ */
+export const startRecordingApiV1ScrcpyRecordingStartPostMutation = (options?: Partial<Options<StartRecordingApiV1ScrcpyRecordingStartPostData>>): UseMutationOptions<StartRecordingApiV1ScrcpyRecordingStartPostResponse, AxiosError<StartRecordingApiV1ScrcpyRecordingStartPostError>, Options<StartRecordingApiV1ScrcpyRecordingStartPostData>> => {
+    const mutationOptions: UseMutationOptions<StartRecordingApiV1ScrcpyRecordingStartPostResponse, AxiosError<StartRecordingApiV1ScrcpyRecordingStartPostError>, Options<StartRecordingApiV1ScrcpyRecordingStartPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await startRecordingApiV1ScrcpyRecordingStartPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Stop Recording
+ *
+ * 停止录制
+ */
+export const stopRecordingApiV1ScrcpyRecordingStopPostMutation = (options?: Partial<Options<StopRecordingApiV1ScrcpyRecordingStopPostData>>): UseMutationOptions<StopRecordingApiV1ScrcpyRecordingStopPostResponse, AxiosError<DefaultError>, Options<StopRecordingApiV1ScrcpyRecordingStopPostData>> => {
+    const mutationOptions: UseMutationOptions<StopRecordingApiV1ScrcpyRecordingStopPostResponse, AxiosError<DefaultError>, Options<StopRecordingApiV1ScrcpyRecordingStopPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await stopRecordingApiV1ScrcpyRecordingStopPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getRecordingStatusApiV1ScrcpyRecordingStatusGetQueryKey = (options?: Options<GetRecordingStatusApiV1ScrcpyRecordingStatusGetData>) => createQueryKey('getRecordingStatusApiV1ScrcpyRecordingStatusGet', options);
+
+/**
+ * Get Recording Status
+ *
+ * 获取录制状态
+ */
+export const getRecordingStatusApiV1ScrcpyRecordingStatusGetOptions = (options?: Options<GetRecordingStatusApiV1ScrcpyRecordingStatusGetData>) => queryOptions<GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponse, AxiosError<DefaultError>, GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponse, ReturnType<typeof getRecordingStatusApiV1ScrcpyRecordingStatusGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getRecordingStatusApiV1ScrcpyRecordingStatusGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getRecordingStatusApiV1ScrcpyRecordingStatusGetQueryKey(options)
+});
+
+export const listDisplaysApiV1ScrcpyDisplaysGetQueryKey = (options?: Options<ListDisplaysApiV1ScrcpyDisplaysGetData>) => createQueryKey('listDisplaysApiV1ScrcpyDisplaysGet', options);
+
+/**
+ * List Displays
+ *
+ * 列出设备的所有显示器
+ *
+ * 使用 scrcpy --list-displays 命令
+ */
+export const listDisplaysApiV1ScrcpyDisplaysGetOptions = (options?: Options<ListDisplaysApiV1ScrcpyDisplaysGetData>) => queryOptions<unknown, AxiosError<ListDisplaysApiV1ScrcpyDisplaysGetError>, unknown, ReturnType<typeof listDisplaysApiV1ScrcpyDisplaysGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await listDisplaysApiV1ScrcpyDisplaysGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: listDisplaysApiV1ScrcpyDisplaysGetQueryKey(options)
+});
+
+export const listCamerasApiV1ScrcpyCamerasGetQueryKey = (options?: Options<ListCamerasApiV1ScrcpyCamerasGetData>) => createQueryKey('listCamerasApiV1ScrcpyCamerasGet', options);
+
+/**
+ * List Cameras
+ *
+ * 列出设备的所有摄像头
+ *
+ * 使用 scrcpy --list-cameras 命令（需要 Android 12+）
+ */
+export const listCamerasApiV1ScrcpyCamerasGetOptions = (options?: Options<ListCamerasApiV1ScrcpyCamerasGetData>) => queryOptions<unknown, AxiosError<ListCamerasApiV1ScrcpyCamerasGetError>, unknown, ReturnType<typeof listCamerasApiV1ScrcpyCamerasGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await listCamerasApiV1ScrcpyCamerasGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: listCamerasApiV1ScrcpyCamerasGetQueryKey(options)
+});
+
+export const listEncodersApiV1ScrcpyEncodersGetQueryKey = (options?: Options<ListEncodersApiV1ScrcpyEncodersGetData>) => createQueryKey('listEncodersApiV1ScrcpyEncodersGet', options);
+
+/**
+ * List Encoders
+ *
+ * 列出设备支持的编码器
+ *
+ * 使用 scrcpy --list-encoders 命令
+ */
+export const listEncodersApiV1ScrcpyEncodersGetOptions = (options?: Options<ListEncodersApiV1ScrcpyEncodersGetData>) => queryOptions<unknown, AxiosError<ListEncodersApiV1ScrcpyEncodersGetError>, unknown, ReturnType<typeof listEncodersApiV1ScrcpyEncodersGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await listEncodersApiV1ScrcpyEncodersGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: listEncodersApiV1ScrcpyEncodersGetQueryKey(options)
+});
+
+/**
+ * Run Scrcpy Command
+ *
+ * 执行自定义 scrcpy 命令
+ *
+ * 可以传入任意 scrcpy 命令行参数。参考文档: https://github.com/Genymobile/scrcpy
+ *
+ * 示例参数:
+ * - ["--version"] - 获取版本
+ * - ["--list-displays", "-s", "device_serial"] - 列出特定设备的显示器
+ * - ["-s", "device_serial", "--record", "output.mp4", "--no-playback"] - 录制
+ */
+export const runScrcpyCommandApiV1ScrcpyCommandPostMutation = (options?: Partial<Options<RunScrcpyCommandApiV1ScrcpyCommandPostData>>): UseMutationOptions<RunScrcpyCommandApiV1ScrcpyCommandPostResponse, AxiosError<RunScrcpyCommandApiV1ScrcpyCommandPostError>, Options<RunScrcpyCommandApiV1ScrcpyCommandPostData>> => {
+    const mutationOptions: UseMutationOptions<RunScrcpyCommandApiV1ScrcpyCommandPostResponse, AxiosError<RunScrcpyCommandApiV1ScrcpyCommandPostError>, Options<RunScrcpyCommandApiV1ScrcpyCommandPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await runScrcpyCommandApiV1ScrcpyCommandPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
 };
 
 export const healthCheckHealthGetQueryKey = (options?: Options<HealthCheckHealthGetData>) => createQueryKey('healthCheckHealthGet', options);

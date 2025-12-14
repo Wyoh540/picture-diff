@@ -2,7 +2,7 @@
 
 import { type Client, formDataBodySerializer, type Options as Options2, type TDataShape } from './client';
 import { client } from './client.gen';
-import type { DetectAndSaveApiV1DiffDetectSavePostData, DetectAndSaveApiV1DiffDetectSavePostErrors, DetectAndSaveApiV1DiffDetectSavePostResponses, DetectDifferencesApiV1DiffDetectPostData, DetectDifferencesApiV1DiffDetectPostErrors, DetectDifferencesApiV1DiffDetectPostResponses, DetectDifferencesMetaApiV1DiffDetectMetaPostData, DetectDifferencesMetaApiV1DiffDetectMetaPostErrors, DetectDifferencesMetaApiV1DiffDetectMetaPostResponses, HealthCheckHealthGetData, HealthCheckHealthGetResponses, RootGetData, RootGetResponses } from './types.gen';
+import type { AdbConnectApiV1ScrcpyAdbConnectPostData, AdbConnectApiV1ScrcpyAdbConnectPostErrors, AdbConnectApiV1ScrcpyAdbConnectPostResponses, CaptureScreenshotApiV1AdbScreenshotGetData, CaptureScreenshotApiV1AdbScreenshotGetResponses, CaptureScreenshotApiV1ScrcpyScreenshotGetData, CaptureScreenshotApiV1ScrcpyScreenshotGetErrors, CaptureScreenshotApiV1ScrcpyScreenshotGetResponses, CaptureScreenshotPostApiV1ScrcpyScreenshotPostData, CaptureScreenshotPostApiV1ScrcpyScreenshotPostErrors, CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponses, CheckAvailableApiV1ScrcpyAvailableGetData, CheckAvailableApiV1ScrcpyAvailableGetResponses, CheckInstallationApiV1ScrcpyInstallationGetData, CheckInstallationApiV1ScrcpyInstallationGetResponses, ConnectDeviceApiV1AdbConnectPostData, ConnectDeviceApiV1AdbConnectPostErrors, ConnectDeviceApiV1AdbConnectPostResponses, ConnectDeviceApiV1ScrcpyConnectPostData, ConnectDeviceApiV1ScrcpyConnectPostErrors, ConnectDeviceApiV1ScrcpyConnectPostResponses, DetectAndSaveApiV1DiffDetectSavePostData, DetectAndSaveApiV1DiffDetectSavePostErrors, DetectAndSaveApiV1DiffDetectSavePostResponses, DetectDifferencesApiV1DiffDetectPostData, DetectDifferencesApiV1DiffDetectPostErrors, DetectDifferencesApiV1DiffDetectPostResponses, DetectDifferencesMetaApiV1DiffDetectMetaPostData, DetectDifferencesMetaApiV1DiffDetectMetaPostErrors, DetectDifferencesMetaApiV1DiffDetectMetaPostResponses, DisconnectDeviceApiV1AdbDisconnectPostData, DisconnectDeviceApiV1AdbDisconnectPostResponses, DisconnectDeviceApiV1ScrcpyDisconnectPostData, DisconnectDeviceApiV1ScrcpyDisconnectPostResponses, GetClipboardApiV1ScrcpyClipboardGetData, GetClipboardApiV1ScrcpyClipboardGetResponses, GetDevicesApiV1AdbDevicesGetData, GetDevicesApiV1AdbDevicesGetResponses, GetRecordingStatusApiV1ScrcpyRecordingStatusGetData, GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponses, GetScreenInfoApiV1AdbScreenInfoGetData, GetScreenInfoApiV1AdbScreenInfoGetResponses, GetStatusApiV1AdbStatusGetData, GetStatusApiV1AdbStatusGetResponses, GetStatusApiV1ScrcpyStatusGetData, GetStatusApiV1ScrcpyStatusGetResponses, HealthCheckHealthGetData, HealthCheckHealthGetResponses, InputKeyeventApiV1AdbInputKeyeventPostData, InputKeyeventApiV1AdbInputKeyeventPostErrors, InputKeyeventApiV1AdbInputKeyeventPostResponses, InputSwipeApiV1AdbInputSwipePostData, InputSwipeApiV1AdbInputSwipePostErrors, InputSwipeApiV1AdbInputSwipePostResponses, InputTapApiV1AdbInputTapPostData, InputTapApiV1AdbInputTapPostErrors, InputTapApiV1AdbInputTapPostResponses, InputTextApiV1AdbInputTextPostData, InputTextApiV1AdbInputTextPostErrors, InputTextApiV1AdbInputTextPostResponses, ListCamerasApiV1ScrcpyCamerasGetData, ListCamerasApiV1ScrcpyCamerasGetErrors, ListCamerasApiV1ScrcpyCamerasGetResponses, ListDevicesApiV1ScrcpyDevicesGetData, ListDevicesApiV1ScrcpyDevicesGetResponses, ListDisplaysApiV1ScrcpyDisplaysGetData, ListDisplaysApiV1ScrcpyDisplaysGetErrors, ListDisplaysApiV1ScrcpyDisplaysGetResponses, ListEncodersApiV1ScrcpyEncodersGetData, ListEncodersApiV1ScrcpyEncodersGetErrors, ListEncodersApiV1ScrcpyEncodersGetResponses, RootGetData, RootGetResponses, RunScrcpyCommandApiV1ScrcpyCommandPostData, RunScrcpyCommandApiV1ScrcpyCommandPostErrors, RunScrcpyCommandApiV1ScrcpyCommandPostResponses, StartRecordingApiV1ScrcpyRecordingStartPostData, StartRecordingApiV1ScrcpyRecordingStartPostErrors, StartRecordingApiV1ScrcpyRecordingStartPostResponses, StopRecordingApiV1ScrcpyRecordingStopPostData, StopRecordingApiV1ScrcpyRecordingStopPostResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -62,6 +62,367 @@ export const detectAndSaveApiV1DiffDetectSavePost = <ThrowOnError extends boolea
     ...options,
     headers: {
         'Content-Type': null,
+        ...options.headers
+    }
+});
+
+/**
+ * Connect Device
+ *
+ * 连接到 ADB 设备（无线调试）
+ */
+export const connectDeviceApiV1AdbConnectPost = <ThrowOnError extends boolean = false>(options: Options<ConnectDeviceApiV1AdbConnectPostData, ThrowOnError>) => (options.client ?? client).post<ConnectDeviceApiV1AdbConnectPostResponses, ConnectDeviceApiV1AdbConnectPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/connect',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Disconnect Device
+ *
+ * 断开 ADB 连接
+ */
+export const disconnectDeviceApiV1AdbDisconnectPost = <ThrowOnError extends boolean = false>(options?: Options<DisconnectDeviceApiV1AdbDisconnectPostData, ThrowOnError>) => (options?.client ?? client).post<DisconnectDeviceApiV1AdbDisconnectPostResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/disconnect',
+    ...options
+});
+
+/**
+ * Get Status
+ *
+ * 获取 ADB 连接状态
+ */
+export const getStatusApiV1AdbStatusGet = <ThrowOnError extends boolean = false>(options?: Options<GetStatusApiV1AdbStatusGetData, ThrowOnError>) => (options?.client ?? client).get<GetStatusApiV1AdbStatusGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/status',
+    ...options
+});
+
+/**
+ * Capture Screenshot
+ *
+ * 截取设备屏幕
+ */
+export const captureScreenshotApiV1AdbScreenshotGet = <ThrowOnError extends boolean = false>(options?: Options<CaptureScreenshotApiV1AdbScreenshotGetData, ThrowOnError>) => (options?.client ?? client).get<CaptureScreenshotApiV1AdbScreenshotGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/screenshot',
+    ...options
+});
+
+/**
+ * Get Devices
+ *
+ * 获取已连接的设备列表
+ */
+export const getDevicesApiV1AdbDevicesGet = <ThrowOnError extends boolean = false>(options?: Options<GetDevicesApiV1AdbDevicesGetData, ThrowOnError>) => (options?.client ?? client).get<GetDevicesApiV1AdbDevicesGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/devices',
+    ...options
+});
+
+/**
+ * Get Screen Info
+ *
+ * 获取设备屏幕分辨率信息
+ */
+export const getScreenInfoApiV1AdbScreenInfoGet = <ThrowOnError extends boolean = false>(options?: Options<GetScreenInfoApiV1AdbScreenInfoGetData, ThrowOnError>) => (options?.client ?? client).get<GetScreenInfoApiV1AdbScreenInfoGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/screen-info',
+    ...options
+});
+
+/**
+ * Input Tap
+ *
+ * 模拟点击操作
+ */
+export const inputTapApiV1AdbInputTapPost = <ThrowOnError extends boolean = false>(options: Options<InputTapApiV1AdbInputTapPostData, ThrowOnError>) => (options.client ?? client).post<InputTapApiV1AdbInputTapPostResponses, InputTapApiV1AdbInputTapPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/input/tap',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Input Swipe
+ *
+ * 模拟滑动操作
+ */
+export const inputSwipeApiV1AdbInputSwipePost = <ThrowOnError extends boolean = false>(options: Options<InputSwipeApiV1AdbInputSwipePostData, ThrowOnError>) => (options.client ?? client).post<InputSwipeApiV1AdbInputSwipePostResponses, InputSwipeApiV1AdbInputSwipePostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/input/swipe',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Input Keyevent
+ *
+ * 模拟按键操作
+ */
+export const inputKeyeventApiV1AdbInputKeyeventPost = <ThrowOnError extends boolean = false>(options: Options<InputKeyeventApiV1AdbInputKeyeventPostData, ThrowOnError>) => (options.client ?? client).post<InputKeyeventApiV1AdbInputKeyeventPostResponses, InputKeyeventApiV1AdbInputKeyeventPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/input/keyevent',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Input Text
+ *
+ * 输入文本
+ */
+export const inputTextApiV1AdbInputTextPost = <ThrowOnError extends boolean = false>(options: Options<InputTextApiV1AdbInputTextPostData, ThrowOnError>) => (options.client ?? client).post<InputTextApiV1AdbInputTextPostResponses, InputTextApiV1AdbInputTextPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/adb/input/text',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Check Available
+ *
+ * 检查 scrcpy-client 是否可用
+ */
+export const checkAvailableApiV1ScrcpyAvailableGet = <ThrowOnError extends boolean = false>(options?: Options<CheckAvailableApiV1ScrcpyAvailableGetData, ThrowOnError>) => (options?.client ?? client).get<CheckAvailableApiV1ScrcpyAvailableGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/available',
+    ...options
+});
+
+/**
+ * List Devices
+ *
+ * 获取已连接的设备列表
+ */
+export const listDevicesApiV1ScrcpyDevicesGet = <ThrowOnError extends boolean = false>(options?: Options<ListDevicesApiV1ScrcpyDevicesGetData, ThrowOnError>) => (options?.client ?? client).get<ListDevicesApiV1ScrcpyDevicesGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/devices',
+    ...options
+});
+
+/**
+ * Adb Connect
+ *
+ * 通过 ADB 连接远程设备（用于无线调试）
+ */
+export const adbConnectApiV1ScrcpyAdbConnectPost = <ThrowOnError extends boolean = false>(options: Options<AdbConnectApiV1ScrcpyAdbConnectPostData, ThrowOnError>) => (options.client ?? client).post<AdbConnectApiV1ScrcpyAdbConnectPostResponses, AdbConnectApiV1ScrcpyAdbConnectPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/adb/connect',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Connect Device
+ *
+ * 连接到设备并启动 scrcpy 视频流
+ *
+ * 如果不提供 device_serial，将使用第一个可用设备
+ */
+export const connectDeviceApiV1ScrcpyConnectPost = <ThrowOnError extends boolean = false>(options?: Options<ConnectDeviceApiV1ScrcpyConnectPostData, ThrowOnError>) => (options?.client ?? client).post<ConnectDeviceApiV1ScrcpyConnectPostResponses, ConnectDeviceApiV1ScrcpyConnectPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/connect',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers
+    }
+});
+
+/**
+ * Disconnect Device
+ *
+ * 断开 scrcpy 连接
+ */
+export const disconnectDeviceApiV1ScrcpyDisconnectPost = <ThrowOnError extends boolean = false>(options?: Options<DisconnectDeviceApiV1ScrcpyDisconnectPostData, ThrowOnError>) => (options?.client ?? client).post<DisconnectDeviceApiV1ScrcpyDisconnectPostResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/disconnect',
+    ...options
+});
+
+/**
+ * Get Status
+ *
+ * 获取 scrcpy 连接状态
+ */
+export const getStatusApiV1ScrcpyStatusGet = <ThrowOnError extends boolean = false>(options?: Options<GetStatusApiV1ScrcpyStatusGetData, ThrowOnError>) => (options?.client ?? client).get<GetStatusApiV1ScrcpyStatusGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/status',
+    ...options
+});
+
+/**
+ * Capture Screenshot
+ *
+ * 截取设备屏幕（默认使用原始分辨率）
+ */
+export const captureScreenshotApiV1ScrcpyScreenshotGet = <ThrowOnError extends boolean = false>(options?: Options<CaptureScreenshotApiV1ScrcpyScreenshotGetData, ThrowOnError>) => (options?.client ?? client).get<CaptureScreenshotApiV1ScrcpyScreenshotGetResponses, CaptureScreenshotApiV1ScrcpyScreenshotGetErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/screenshot',
+    ...options
+});
+
+/**
+ * Capture Screenshot Post
+ *
+ * 截取设备屏幕 (POST)（默认使用原始分辨率）
+ */
+export const captureScreenshotPostApiV1ScrcpyScreenshotPost = <ThrowOnError extends boolean = false>(options?: Options<CaptureScreenshotPostApiV1ScrcpyScreenshotPostData, ThrowOnError>) => (options?.client ?? client).post<CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponses, CaptureScreenshotPostApiV1ScrcpyScreenshotPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/screenshot',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers
+    }
+});
+
+/**
+ * Get Clipboard
+ *
+ * 获取设备剪贴板内容（需要 Android 10+）
+ */
+export const getClipboardApiV1ScrcpyClipboardGet = <ThrowOnError extends boolean = false>(options?: Options<GetClipboardApiV1ScrcpyClipboardGetData, ThrowOnError>) => (options?.client ?? client).get<GetClipboardApiV1ScrcpyClipboardGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/clipboard',
+    ...options
+});
+
+/**
+ * Check Installation
+ *
+ * 检查 scrcpy 安装状态
+ *
+ * 返回 scrcpy 目录下各组件的存在状态
+ */
+export const checkInstallationApiV1ScrcpyInstallationGet = <ThrowOnError extends boolean = false>(options?: Options<CheckInstallationApiV1ScrcpyInstallationGetData, ThrowOnError>) => (options?.client ?? client).get<CheckInstallationApiV1ScrcpyInstallationGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/installation',
+    ...options
+});
+
+/**
+ * Start Recording
+ *
+ * 开始录制屏幕
+ *
+ * 使用 scrcpy.exe 进行录制。参考文档: https://github.com/Genymobile/scrcpy
+ *
+ * 注意：
+ * - 录制功能需要 scrcpy.exe 可执行文件
+ * - 支持 H.264、H.265、AV1 编码
+ * - 设置 no_playback=true 时只录制不显示画面
+ */
+export const startRecordingApiV1ScrcpyRecordingStartPost = <ThrowOnError extends boolean = false>(options: Options<StartRecordingApiV1ScrcpyRecordingStartPostData, ThrowOnError>) => (options.client ?? client).post<StartRecordingApiV1ScrcpyRecordingStartPostResponses, StartRecordingApiV1ScrcpyRecordingStartPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/recording/start',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Stop Recording
+ *
+ * 停止录制
+ */
+export const stopRecordingApiV1ScrcpyRecordingStopPost = <ThrowOnError extends boolean = false>(options?: Options<StopRecordingApiV1ScrcpyRecordingStopPostData, ThrowOnError>) => (options?.client ?? client).post<StopRecordingApiV1ScrcpyRecordingStopPostResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/recording/stop',
+    ...options
+});
+
+/**
+ * Get Recording Status
+ *
+ * 获取录制状态
+ */
+export const getRecordingStatusApiV1ScrcpyRecordingStatusGet = <ThrowOnError extends boolean = false>(options?: Options<GetRecordingStatusApiV1ScrcpyRecordingStatusGetData, ThrowOnError>) => (options?.client ?? client).get<GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/recording/status',
+    ...options
+});
+
+/**
+ * List Displays
+ *
+ * 列出设备的所有显示器
+ *
+ * 使用 scrcpy --list-displays 命令
+ */
+export const listDisplaysApiV1ScrcpyDisplaysGet = <ThrowOnError extends boolean = false>(options?: Options<ListDisplaysApiV1ScrcpyDisplaysGetData, ThrowOnError>) => (options?.client ?? client).get<ListDisplaysApiV1ScrcpyDisplaysGetResponses, ListDisplaysApiV1ScrcpyDisplaysGetErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/displays',
+    ...options
+});
+
+/**
+ * List Cameras
+ *
+ * 列出设备的所有摄像头
+ *
+ * 使用 scrcpy --list-cameras 命令（需要 Android 12+）
+ */
+export const listCamerasApiV1ScrcpyCamerasGet = <ThrowOnError extends boolean = false>(options?: Options<ListCamerasApiV1ScrcpyCamerasGetData, ThrowOnError>) => (options?.client ?? client).get<ListCamerasApiV1ScrcpyCamerasGetResponses, ListCamerasApiV1ScrcpyCamerasGetErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/cameras',
+    ...options
+});
+
+/**
+ * List Encoders
+ *
+ * 列出设备支持的编码器
+ *
+ * 使用 scrcpy --list-encoders 命令
+ */
+export const listEncodersApiV1ScrcpyEncodersGet = <ThrowOnError extends boolean = false>(options?: Options<ListEncodersApiV1ScrcpyEncodersGetData, ThrowOnError>) => (options?.client ?? client).get<ListEncodersApiV1ScrcpyEncodersGetResponses, ListEncodersApiV1ScrcpyEncodersGetErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/encoders',
+    ...options
+});
+
+/**
+ * Run Scrcpy Command
+ *
+ * 执行自定义 scrcpy 命令
+ *
+ * 可以传入任意 scrcpy 命令行参数。参考文档: https://github.com/Genymobile/scrcpy
+ *
+ * 示例参数:
+ * - ["--version"] - 获取版本
+ * - ["--list-displays", "-s", "device_serial"] - 列出特定设备的显示器
+ * - ["-s", "device_serial", "--record", "output.mp4", "--no-playback"] - 录制
+ */
+export const runScrcpyCommandApiV1ScrcpyCommandPost = <ThrowOnError extends boolean = false>(options: Options<RunScrcpyCommandApiV1ScrcpyCommandPostData, ThrowOnError>) => (options.client ?? client).post<RunScrcpyCommandApiV1ScrcpyCommandPostResponses, RunScrcpyCommandApiV1ScrcpyCommandPostErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/scrcpy/command',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
         ...options.headers
     }
 });

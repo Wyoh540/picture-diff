@@ -12,7 +12,17 @@ from .image_diff import (
     SavedFiles,
 )
 
+from .scrcpy import (
+    ScrcpyConnectRequest,
+    ScrcpyConnectResponse,
+    ScrcpyStatusResponse,
+    ScrcpyDevicesResponse,
+    ScrcpyScreenshotResponse,
+    ScrcpyControlResponse,
+)
+
 __all__ = [
+    # Image diff
     "DifferenceRegion",
     "DiffMetaResponse",
     "DiffResponse",
@@ -20,4 +30,11 @@ __all__ = [
     "HealthResponse",
     "ImageSize",
     "SavedFiles",
+    # Scrcpy
+    "ScrcpyConnectRequest",
+    "ScrcpyConnectResponse",
+    "ScrcpyStatusResponse",
+    "ScrcpyDevicesResponse",
+    "ScrcpyScreenshotResponse",
+    "ScrcpyControlResponse",
 ]

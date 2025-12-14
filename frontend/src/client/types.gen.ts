@@ -5,6 +5,254 @@ export type ClientOptions = {
 };
 
 /**
+ * AdbConnectResponse
+ *
+ * ADB 连接响应
+ */
+export type AdbConnectResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message: string;
+    /**
+     * Address
+     */
+    address?: string | null;
+};
+
+/**
+ * AdbDeviceInfo
+ *
+ * ADB 设备信息
+ */
+export type AdbDeviceInfo = {
+    /**
+     * Address
+     *
+     * 设备地址
+     */
+    address: string;
+    /**
+     * State
+     *
+     * 设备状态
+     */
+    state: string;
+    /**
+     * Info
+     *
+     * 设备附加信息
+     */
+    info?: string;
+};
+
+/**
+ * AdbDevicesResponse
+ *
+ * ADB 设备列表响应
+ */
+export type AdbDevicesResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Devices
+     *
+     * 设备列表
+     */
+    devices?: Array<AdbDeviceInfo>;
+};
+
+/**
+ * AdbInputResponse
+ *
+ * 输入操作响应
+ */
+export type AdbInputResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+};
+
+/**
+ * AdbInputTextRequest
+ *
+ * 文本输入请求
+ */
+export type AdbInputTextRequest = {
+    /**
+     * Text
+     *
+     * 要输入的文本
+     */
+    text: string;
+};
+
+/**
+ * AdbKeyEventRequest
+ *
+ * 按键事件请求
+ */
+export type AdbKeyEventRequest = {
+    /**
+     * Keycode
+     *
+     * Android 按键代码
+     */
+    keycode: string;
+};
+
+/**
+ * AdbScreenInfoResponse
+ *
+ * 屏幕信息响应
+ */
+export type AdbScreenInfoResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Width
+     *
+     * 屏幕宽度
+     */
+    width?: number | null;
+    /**
+     * Height
+     *
+     * 屏幕高度
+     */
+    height?: number | null;
+    /**
+     * Density
+     *
+     * 屏幕密度
+     */
+    density?: number | null;
+};
+
+/**
+ * AdbScreenshotResponse
+ *
+ * ADB 截图响应
+ */
+export type AdbScreenshotResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Image
+     *
+     * Base64 编码的 PNG 图片
+     */
+    image?: string | null;
+    /**
+     * Size
+     *
+     * 图片大小（字节）
+     */
+    size?: number | null;
+};
+
+/**
+ * AdbStatusResponse
+ *
+ * ADB 状态响应
+ */
+export type AdbStatusResponse = {
+    /**
+     * Connected
+     */
+    connected: boolean;
+    /**
+     * Address
+     */
+    address?: string | null;
+};
+
+/**
+ * AdbSwipeRequest
+ *
+ * 滑动请求
+ */
+export type AdbSwipeRequest = {
+    /**
+     * X1
+     *
+     * 起始 X 坐标
+     */
+    x1: number;
+    /**
+     * Y1
+     *
+     * 起始 Y 坐标
+     */
+    y1: number;
+    /**
+     * X2
+     *
+     * 结束 X 坐标
+     */
+    x2: number;
+    /**
+     * Y2
+     *
+     * 结束 Y 坐标
+     */
+    y2: number;
+    /**
+     * Duration
+     *
+     * 滑动持续时间（毫秒）
+     */
+    duration?: number;
+};
+
+/**
+ * AdbTapRequest
+ *
+ * 点击请求
+ */
+export type AdbTapRequest = {
+    /**
+     * X
+     *
+     * 点击 X 坐标
+     */
+    x: number;
+    /**
+     * Y
+     *
+     * 点击 Y 坐标
+     */
+    y: number;
+};
+
+/**
  * Body_detect_and_save_api_v1_diff_detect_save_post
  */
 export type BodyDetectAndSaveApiV1DiffDetectSavePost = {
@@ -86,6 +334,29 @@ export type BodyDetectDifferencesMetaApiV1DiffDetectMetaPost = {
      * 差异阈值
      */
     diff_threshold?: number;
+};
+
+/**
+ * DeviceInfoResponse
+ *
+ * 设备信息
+ */
+export type DeviceInfoResponse = {
+    /**
+     * Serial
+     */
+    serial?: string | null;
+    /**
+     * Name
+     */
+    name?: string | null;
+    /**
+     * Resolution
+     */
+    resolution?: [
+        number,
+        number
+    ] | null;
 };
 
 /**
@@ -305,6 +576,407 @@ export type SavedFiles = {
 };
 
 /**
+ * ScrcpyClipboardResponse
+ *
+ * 剪贴板响应
+ */
+export type ScrcpyClipboardResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Text
+     */
+    text?: string | null;
+};
+
+/**
+ * ScrcpyCommandRequest
+ *
+ * 自定义 scrcpy 命令请求
+ */
+export type ScrcpyCommandRequest = {
+    /**
+     * Args
+     *
+     * scrcpy 命令行参数列表
+     */
+    args: Array<string>;
+    /**
+     * Wait
+     *
+     * 是否等待命令完成
+     */
+    wait?: boolean;
+    /**
+     * Timeout
+     *
+     * 超时时间（秒）
+     */
+    timeout?: number;
+};
+
+/**
+ * ScrcpyCommandResponse
+ *
+ * 自定义 scrcpy 命令响应
+ */
+export type ScrcpyCommandResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Return Code
+     */
+    return_code?: number | null;
+    /**
+     * Stdout
+     */
+    stdout?: string | null;
+    /**
+     * Stderr
+     */
+    stderr?: string | null;
+    /**
+     * Pid
+     */
+    pid?: number | null;
+    /**
+     * Command
+     */
+    command?: string | null;
+};
+
+/**
+ * ScrcpyConnectRequest
+ *
+ * Scrcpy 连接请求
+ */
+export type ScrcpyConnectRequest = {
+    /**
+     * Device Serial
+     *
+     * 设备序列号，不填则使用第一个设备
+     */
+    device_serial?: string | null;
+    /**
+     * Max Width
+     *
+     * 最大视频宽度（1920=1080p），降低可减少 CPU 使用
+     */
+    max_width?: number;
+    /**
+     * Bitrate
+     *
+     * 视频比特率 (bps)，高分辨率建议8Mbps以上
+     */
+    bitrate?: number;
+    /**
+     * Max Fps
+     *
+     * 最大帧率
+     */
+    max_fps?: number;
+};
+
+/**
+ * ScrcpyConnectResponse
+ *
+ * Scrcpy 连接响应
+ */
+export type ScrcpyConnectResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message: string;
+    device?: DeviceInfoResponse | null;
+};
+
+/**
+ * ScrcpyControlResponse
+ *
+ * 控制操作响应
+ */
+export type ScrcpyControlResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+};
+
+/**
+ * ScrcpyDeviceInfo
+ *
+ * 设备信息
+ */
+export type ScrcpyDeviceInfo = {
+    /**
+     * Serial
+     */
+    serial: string;
+    /**
+     * State
+     */
+    state?: string;
+};
+
+/**
+ * ScrcpyDevicesResponse
+ *
+ * 设备列表响应
+ */
+export type ScrcpyDevicesResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Devices
+     */
+    devices?: Array<ScrcpyDeviceInfo>;
+};
+
+/**
+ * ScrcpyInstallationResponse
+ *
+ * Scrcpy 安装检查响应
+ */
+export type ScrcpyInstallationResponse = {
+    /**
+     * Scrcpy Dir
+     */
+    scrcpy_dir: string;
+    /**
+     * Scrcpy Dir Exists
+     */
+    scrcpy_dir_exists: boolean;
+    /**
+     * Scrcpy Exe
+     */
+    scrcpy_exe: string;
+    /**
+     * Scrcpy Exe Exists
+     */
+    scrcpy_exe_exists: boolean;
+    /**
+     * Scrcpy Server
+     */
+    scrcpy_server: string;
+    /**
+     * Scrcpy Server Exists
+     */
+    scrcpy_server_exists: boolean;
+    /**
+     * Adb Exe
+     */
+    adb_exe: string;
+    /**
+     * Adb Exe Exists
+     */
+    adb_exe_exists: boolean;
+    /**
+     * Version
+     */
+    version: string;
+};
+
+/**
+ * ScrcpyRecordingRequest
+ *
+ * 录制请求
+ */
+export type ScrcpyRecordingRequest = {
+    /**
+     * Output File
+     *
+     * 输出文件路径（如 recording.mp4）
+     */
+    output_file: string;
+    /**
+     * Device Serial
+     *
+     * 设备序列号
+     */
+    device_serial?: string | null;
+    /**
+     * Max Size
+     *
+     * 最大尺寸（0 表示不限制）
+     */
+    max_size?: number;
+    /**
+     * Max Fps
+     *
+     * 最大帧率（0 表示不限制）
+     */
+    max_fps?: number;
+    video_codec?: VideoCodec;
+    /**
+     * Audio
+     *
+     * 是否录制音频
+     */
+    audio?: boolean;
+    /**
+     * No Playback
+     *
+     * 是否禁用画面显示（仅录制）
+     */
+    no_playback?: boolean;
+};
+
+/**
+ * ScrcpyRecordingResponse
+ *
+ * 录制响应
+ */
+export type ScrcpyRecordingResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Output File
+     */
+    output_file?: string | null;
+    /**
+     * Pid
+     */
+    pid?: number | null;
+    /**
+     * Command
+     */
+    command?: string | null;
+};
+
+/**
+ * ScrcpyRecordingStatusResponse
+ *
+ * 录制状态响应
+ */
+export type ScrcpyRecordingStatusResponse = {
+    /**
+     * Is Recording
+     */
+    is_recording: boolean;
+    /**
+     * Recording File
+     */
+    recording_file?: string | null;
+    /**
+     * Pid
+     */
+    pid?: number | null;
+};
+
+/**
+ * ScrcpyScreenshotRequest
+ *
+ * 截图请求
+ */
+export type ScrcpyScreenshotRequest = {
+    /**
+     * Quality
+     *
+     * JPEG 压缩质量 (1-100)
+     */
+    quality?: number;
+    /**
+     * Use Original Resolution
+     *
+     * 使用设备原始分辨率（通过 adb screencap），否则使用 scrcpy 流帧
+     */
+    use_original_resolution?: boolean;
+};
+
+/**
+ * ScrcpyScreenshotResponse
+ *
+ * 截图响应
+ */
+export type ScrcpyScreenshotResponse = {
+    /**
+     * Success
+     */
+    success: boolean;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Image
+     *
+     * Base64 编码的 JPEG 图片
+     */
+    image?: string | null;
+    /**
+     * Size
+     */
+    size?: number | null;
+    /**
+     * Width
+     */
+    width?: number | null;
+    /**
+     * Height
+     */
+    height?: number | null;
+    /**
+     * Format
+     */
+    format?: string | null;
+};
+
+/**
+ * ScrcpyStatusResponse
+ *
+ * Scrcpy 状态响应
+ */
+export type ScrcpyStatusResponse = {
+    /**
+     * Connected
+     */
+    connected: boolean;
+    /**
+     * Streaming
+     */
+    streaming: boolean;
+    device?: DeviceInfoResponse | null;
+    /**
+     * Config
+     */
+    config?: {
+        [key: string]: unknown;
+    } | null;
+};
+
+/**
  * ValidationError
  */
 export type ValidationError = {
@@ -320,6 +992,53 @@ export type ValidationError = {
      * Error Type
      */
     type: string;
+};
+
+/**
+ * VideoCodec
+ *
+ * 视频编解码器
+ */
+export type VideoCodec = 'h264' | 'h265' | 'av1';
+
+/**
+ * AdbConnectRequest
+ *
+ * ADB 连接请求
+ */
+export type AppSchemasAdbAdbConnectRequest = {
+    /**
+     * Host
+     *
+     * 设备 IP 地址
+     */
+    host: string;
+    /**
+     * Port
+     *
+     * ADB 端口，默认 5555
+     */
+    port?: number;
+};
+
+/**
+ * AdbConnectRequest
+ *
+ * ADB 远程连接请求
+ */
+export type AppSchemasScrcpyAdbConnectRequest = {
+    /**
+     * Host
+     *
+     * 设备 IP 地址
+     */
+    host: string;
+    /**
+     * Port
+     *
+     * ADB 端口
+     */
+    port?: number;
 };
 
 export type DetectDifferencesApiV1DiffDetectPostData = {
@@ -396,6 +1115,584 @@ export type DetectAndSaveApiV1DiffDetectSavePostResponses = {
 };
 
 export type DetectAndSaveApiV1DiffDetectSavePostResponse = DetectAndSaveApiV1DiffDetectSavePostResponses[keyof DetectAndSaveApiV1DiffDetectSavePostResponses];
+
+export type ConnectDeviceApiV1AdbConnectPostData = {
+    body: AppSchemasAdbAdbConnectRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/connect';
+};
+
+export type ConnectDeviceApiV1AdbConnectPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ConnectDeviceApiV1AdbConnectPostError = ConnectDeviceApiV1AdbConnectPostErrors[keyof ConnectDeviceApiV1AdbConnectPostErrors];
+
+export type ConnectDeviceApiV1AdbConnectPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbConnectResponse;
+};
+
+export type ConnectDeviceApiV1AdbConnectPostResponse = ConnectDeviceApiV1AdbConnectPostResponses[keyof ConnectDeviceApiV1AdbConnectPostResponses];
+
+export type DisconnectDeviceApiV1AdbDisconnectPostData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/disconnect';
+};
+
+export type DisconnectDeviceApiV1AdbDisconnectPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbConnectResponse;
+};
+
+export type DisconnectDeviceApiV1AdbDisconnectPostResponse = DisconnectDeviceApiV1AdbDisconnectPostResponses[keyof DisconnectDeviceApiV1AdbDisconnectPostResponses];
+
+export type GetStatusApiV1AdbStatusGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/status';
+};
+
+export type GetStatusApiV1AdbStatusGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbStatusResponse;
+};
+
+export type GetStatusApiV1AdbStatusGetResponse = GetStatusApiV1AdbStatusGetResponses[keyof GetStatusApiV1AdbStatusGetResponses];
+
+export type CaptureScreenshotApiV1AdbScreenshotGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/screenshot';
+};
+
+export type CaptureScreenshotApiV1AdbScreenshotGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbScreenshotResponse;
+};
+
+export type CaptureScreenshotApiV1AdbScreenshotGetResponse = CaptureScreenshotApiV1AdbScreenshotGetResponses[keyof CaptureScreenshotApiV1AdbScreenshotGetResponses];
+
+export type GetDevicesApiV1AdbDevicesGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/devices';
+};
+
+export type GetDevicesApiV1AdbDevicesGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbDevicesResponse;
+};
+
+export type GetDevicesApiV1AdbDevicesGetResponse = GetDevicesApiV1AdbDevicesGetResponses[keyof GetDevicesApiV1AdbDevicesGetResponses];
+
+export type GetScreenInfoApiV1AdbScreenInfoGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/screen-info';
+};
+
+export type GetScreenInfoApiV1AdbScreenInfoGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbScreenInfoResponse;
+};
+
+export type GetScreenInfoApiV1AdbScreenInfoGetResponse = GetScreenInfoApiV1AdbScreenInfoGetResponses[keyof GetScreenInfoApiV1AdbScreenInfoGetResponses];
+
+export type InputTapApiV1AdbInputTapPostData = {
+    body: AdbTapRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/input/tap';
+};
+
+export type InputTapApiV1AdbInputTapPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type InputTapApiV1AdbInputTapPostError = InputTapApiV1AdbInputTapPostErrors[keyof InputTapApiV1AdbInputTapPostErrors];
+
+export type InputTapApiV1AdbInputTapPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbInputResponse;
+};
+
+export type InputTapApiV1AdbInputTapPostResponse = InputTapApiV1AdbInputTapPostResponses[keyof InputTapApiV1AdbInputTapPostResponses];
+
+export type InputSwipeApiV1AdbInputSwipePostData = {
+    body: AdbSwipeRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/input/swipe';
+};
+
+export type InputSwipeApiV1AdbInputSwipePostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type InputSwipeApiV1AdbInputSwipePostError = InputSwipeApiV1AdbInputSwipePostErrors[keyof InputSwipeApiV1AdbInputSwipePostErrors];
+
+export type InputSwipeApiV1AdbInputSwipePostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbInputResponse;
+};
+
+export type InputSwipeApiV1AdbInputSwipePostResponse = InputSwipeApiV1AdbInputSwipePostResponses[keyof InputSwipeApiV1AdbInputSwipePostResponses];
+
+export type InputKeyeventApiV1AdbInputKeyeventPostData = {
+    body: AdbKeyEventRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/input/keyevent';
+};
+
+export type InputKeyeventApiV1AdbInputKeyeventPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type InputKeyeventApiV1AdbInputKeyeventPostError = InputKeyeventApiV1AdbInputKeyeventPostErrors[keyof InputKeyeventApiV1AdbInputKeyeventPostErrors];
+
+export type InputKeyeventApiV1AdbInputKeyeventPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbInputResponse;
+};
+
+export type InputKeyeventApiV1AdbInputKeyeventPostResponse = InputKeyeventApiV1AdbInputKeyeventPostResponses[keyof InputKeyeventApiV1AdbInputKeyeventPostResponses];
+
+export type InputTextApiV1AdbInputTextPostData = {
+    body: AdbInputTextRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/adb/input/text';
+};
+
+export type InputTextApiV1AdbInputTextPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type InputTextApiV1AdbInputTextPostError = InputTextApiV1AdbInputTextPostErrors[keyof InputTextApiV1AdbInputTextPostErrors];
+
+export type InputTextApiV1AdbInputTextPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdbInputResponse;
+};
+
+export type InputTextApiV1AdbInputTextPostResponse = InputTextApiV1AdbInputTextPostResponses[keyof InputTextApiV1AdbInputTextPostResponses];
+
+export type CheckAvailableApiV1ScrcpyAvailableGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/available';
+};
+
+export type CheckAvailableApiV1ScrcpyAvailableGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyControlResponse;
+};
+
+export type CheckAvailableApiV1ScrcpyAvailableGetResponse = CheckAvailableApiV1ScrcpyAvailableGetResponses[keyof CheckAvailableApiV1ScrcpyAvailableGetResponses];
+
+export type ListDevicesApiV1ScrcpyDevicesGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/devices';
+};
+
+export type ListDevicesApiV1ScrcpyDevicesGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyDevicesResponse;
+};
+
+export type ListDevicesApiV1ScrcpyDevicesGetResponse = ListDevicesApiV1ScrcpyDevicesGetResponses[keyof ListDevicesApiV1ScrcpyDevicesGetResponses];
+
+export type AdbConnectApiV1ScrcpyAdbConnectPostData = {
+    body: AppSchemasScrcpyAdbConnectRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/adb/connect';
+};
+
+export type AdbConnectApiV1ScrcpyAdbConnectPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AdbConnectApiV1ScrcpyAdbConnectPostError = AdbConnectApiV1ScrcpyAdbConnectPostErrors[keyof AdbConnectApiV1ScrcpyAdbConnectPostErrors];
+
+export type AdbConnectApiV1ScrcpyAdbConnectPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyControlResponse;
+};
+
+export type AdbConnectApiV1ScrcpyAdbConnectPostResponse = AdbConnectApiV1ScrcpyAdbConnectPostResponses[keyof AdbConnectApiV1ScrcpyAdbConnectPostResponses];
+
+export type ConnectDeviceApiV1ScrcpyConnectPostData = {
+    body?: ScrcpyConnectRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/connect';
+};
+
+export type ConnectDeviceApiV1ScrcpyConnectPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ConnectDeviceApiV1ScrcpyConnectPostError = ConnectDeviceApiV1ScrcpyConnectPostErrors[keyof ConnectDeviceApiV1ScrcpyConnectPostErrors];
+
+export type ConnectDeviceApiV1ScrcpyConnectPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyConnectResponse;
+};
+
+export type ConnectDeviceApiV1ScrcpyConnectPostResponse = ConnectDeviceApiV1ScrcpyConnectPostResponses[keyof ConnectDeviceApiV1ScrcpyConnectPostResponses];
+
+export type DisconnectDeviceApiV1ScrcpyDisconnectPostData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/disconnect';
+};
+
+export type DisconnectDeviceApiV1ScrcpyDisconnectPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyControlResponse;
+};
+
+export type DisconnectDeviceApiV1ScrcpyDisconnectPostResponse = DisconnectDeviceApiV1ScrcpyDisconnectPostResponses[keyof DisconnectDeviceApiV1ScrcpyDisconnectPostResponses];
+
+export type GetStatusApiV1ScrcpyStatusGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/status';
+};
+
+export type GetStatusApiV1ScrcpyStatusGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyStatusResponse;
+};
+
+export type GetStatusApiV1ScrcpyStatusGetResponse = GetStatusApiV1ScrcpyStatusGetResponses[keyof GetStatusApiV1ScrcpyStatusGetResponses];
+
+export type CaptureScreenshotApiV1ScrcpyScreenshotGetData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Quality
+         */
+        quality?: number;
+        /**
+         * Use Original Resolution
+         *
+         * 使用设备原始分辨率（通过 adb screencap）
+         */
+        use_original_resolution?: boolean;
+    };
+    url: '/api/v1/scrcpy/screenshot';
+};
+
+export type CaptureScreenshotApiV1ScrcpyScreenshotGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CaptureScreenshotApiV1ScrcpyScreenshotGetError = CaptureScreenshotApiV1ScrcpyScreenshotGetErrors[keyof CaptureScreenshotApiV1ScrcpyScreenshotGetErrors];
+
+export type CaptureScreenshotApiV1ScrcpyScreenshotGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyScreenshotResponse;
+};
+
+export type CaptureScreenshotApiV1ScrcpyScreenshotGetResponse = CaptureScreenshotApiV1ScrcpyScreenshotGetResponses[keyof CaptureScreenshotApiV1ScrcpyScreenshotGetResponses];
+
+export type CaptureScreenshotPostApiV1ScrcpyScreenshotPostData = {
+    body?: ScrcpyScreenshotRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/screenshot';
+};
+
+export type CaptureScreenshotPostApiV1ScrcpyScreenshotPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CaptureScreenshotPostApiV1ScrcpyScreenshotPostError = CaptureScreenshotPostApiV1ScrcpyScreenshotPostErrors[keyof CaptureScreenshotPostApiV1ScrcpyScreenshotPostErrors];
+
+export type CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyScreenshotResponse;
+};
+
+export type CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponse = CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponses[keyof CaptureScreenshotPostApiV1ScrcpyScreenshotPostResponses];
+
+export type GetClipboardApiV1ScrcpyClipboardGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/clipboard';
+};
+
+export type GetClipboardApiV1ScrcpyClipboardGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyClipboardResponse;
+};
+
+export type GetClipboardApiV1ScrcpyClipboardGetResponse = GetClipboardApiV1ScrcpyClipboardGetResponses[keyof GetClipboardApiV1ScrcpyClipboardGetResponses];
+
+export type CheckInstallationApiV1ScrcpyInstallationGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/installation';
+};
+
+export type CheckInstallationApiV1ScrcpyInstallationGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyInstallationResponse;
+};
+
+export type CheckInstallationApiV1ScrcpyInstallationGetResponse = CheckInstallationApiV1ScrcpyInstallationGetResponses[keyof CheckInstallationApiV1ScrcpyInstallationGetResponses];
+
+export type StartRecordingApiV1ScrcpyRecordingStartPostData = {
+    body: ScrcpyRecordingRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/recording/start';
+};
+
+export type StartRecordingApiV1ScrcpyRecordingStartPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type StartRecordingApiV1ScrcpyRecordingStartPostError = StartRecordingApiV1ScrcpyRecordingStartPostErrors[keyof StartRecordingApiV1ScrcpyRecordingStartPostErrors];
+
+export type StartRecordingApiV1ScrcpyRecordingStartPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyRecordingResponse;
+};
+
+export type StartRecordingApiV1ScrcpyRecordingStartPostResponse = StartRecordingApiV1ScrcpyRecordingStartPostResponses[keyof StartRecordingApiV1ScrcpyRecordingStartPostResponses];
+
+export type StopRecordingApiV1ScrcpyRecordingStopPostData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/recording/stop';
+};
+
+export type StopRecordingApiV1ScrcpyRecordingStopPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyRecordingResponse;
+};
+
+export type StopRecordingApiV1ScrcpyRecordingStopPostResponse = StopRecordingApiV1ScrcpyRecordingStopPostResponses[keyof StopRecordingApiV1ScrcpyRecordingStopPostResponses];
+
+export type GetRecordingStatusApiV1ScrcpyRecordingStatusGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/recording/status';
+};
+
+export type GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyRecordingStatusResponse;
+};
+
+export type GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponse = GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponses[keyof GetRecordingStatusApiV1ScrcpyRecordingStatusGetResponses];
+
+export type ListDisplaysApiV1ScrcpyDisplaysGetData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Device Serial
+         */
+        device_serial?: string;
+    };
+    url: '/api/v1/scrcpy/displays';
+};
+
+export type ListDisplaysApiV1ScrcpyDisplaysGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListDisplaysApiV1ScrcpyDisplaysGetError = ListDisplaysApiV1ScrcpyDisplaysGetErrors[keyof ListDisplaysApiV1ScrcpyDisplaysGetErrors];
+
+export type ListDisplaysApiV1ScrcpyDisplaysGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type ListCamerasApiV1ScrcpyCamerasGetData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Device Serial
+         */
+        device_serial?: string;
+    };
+    url: '/api/v1/scrcpy/cameras';
+};
+
+export type ListCamerasApiV1ScrcpyCamerasGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListCamerasApiV1ScrcpyCamerasGetError = ListCamerasApiV1ScrcpyCamerasGetErrors[keyof ListCamerasApiV1ScrcpyCamerasGetErrors];
+
+export type ListCamerasApiV1ScrcpyCamerasGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type ListEncodersApiV1ScrcpyEncodersGetData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Device Serial
+         */
+        device_serial?: string;
+    };
+    url: '/api/v1/scrcpy/encoders';
+};
+
+export type ListEncodersApiV1ScrcpyEncodersGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListEncodersApiV1ScrcpyEncodersGetError = ListEncodersApiV1ScrcpyEncodersGetErrors[keyof ListEncodersApiV1ScrcpyEncodersGetErrors];
+
+export type ListEncodersApiV1ScrcpyEncodersGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
+export type RunScrcpyCommandApiV1ScrcpyCommandPostData = {
+    body: ScrcpyCommandRequest;
+    path?: never;
+    query?: never;
+    url: '/api/v1/scrcpy/command';
+};
+
+export type RunScrcpyCommandApiV1ScrcpyCommandPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type RunScrcpyCommandApiV1ScrcpyCommandPostError = RunScrcpyCommandApiV1ScrcpyCommandPostErrors[keyof RunScrcpyCommandApiV1ScrcpyCommandPostErrors];
+
+export type RunScrcpyCommandApiV1ScrcpyCommandPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: ScrcpyCommandResponse;
+};
+
+export type RunScrcpyCommandApiV1ScrcpyCommandPostResponse = RunScrcpyCommandApiV1ScrcpyCommandPostResponses[keyof RunScrcpyCommandApiV1ScrcpyCommandPostResponses];
 
 export type HealthCheckHealthGetData = {
     body?: never;

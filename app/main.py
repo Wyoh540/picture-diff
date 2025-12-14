@@ -10,6 +10,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app import __version__
 from app.routers import image_diff_router
+from app.routers.adb import router as adb_router
+from app.routers.scrcpy import router as scrcpy_router
 from app.schemas import HealthResponse
 
 
@@ -57,6 +59,8 @@ app.add_middleware(
 
 # 注册路由
 app.include_router(image_diff_router)
+app.include_router(adb_router)
+app.include_router(scrcpy_router)
 
 
 @app.get(

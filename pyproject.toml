@@ -12,6 +12,8 @@ dependencies = [
     "numpy>=1.24.0",
     "opencv-python>=4.8.0",
     "pillow>=10.0.0",
+    "adbutils>=2.0.0",
+    "av>=12.0.0",  # PyAV - 用于 H.264 视频流解码
 ]
 
 [project.optional-dependencies]

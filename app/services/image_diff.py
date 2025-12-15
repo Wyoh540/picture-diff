@@ -42,9 +42,7 @@ def extract_game_images(screenshot: np.ndarray) -> tuple[np.ndarray, np.ndarray]
 
     # 平滑
     kernel_size = 5
-    row_variance_smooth = np.convolve(
-        row_variance, np.ones(kernel_size) / kernel_size, mode="same"
-    )
+    row_variance_smooth = np.convolve(row_variance, np.ones(kernel_size) / kernel_size, mode="same")
 
     # 找到高方差区域
     mean_var = np.mean(row_variance_smooth)
@@ -123,9 +121,7 @@ def extract_game_images(screenshot: np.ndarray) -> tuple[np.ndarray, np.ndarray]
     return img1, img2
 
 
-def crop_white_borders(
-    img: np.ndarray, threshold: int = 235, h_margin: int = 30
-) -> np.ndarray:
+def crop_white_borders(img: np.ndarray, threshold: int = 235, h_margin: int = 30) -> np.ndarray:
     """
     精确裁剪白色边框
     h_margin: 水平方向额外裁剪的边缘像素数
@@ -186,9 +182,7 @@ def crop_white_borders(
     return img[top:bottom, left:right]
 
 
-def align_images(
-    img1: np.ndarray, img2: np.ndarray
-) -> tuple[np.ndarray, np.ndarray]:
+def align_images(img1: np.ndarray, img2: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """对齐两张图片"""
     h1, w1 = img1.shape[:2]
     h2, w2 = img2.shape[:2]
@@ -270,10 +264,7 @@ def merge_overlapping_regions(regions: list, padding: int = 20) -> list:
     if not regions:
         return []
 
-    expanded = [
-        (x - padding, y - padding, w + 2 * padding, h + 2 * padding)
-        for x, y, w, h in regions
-    ]
+    expanded = [(x - padding, y - padding, w + 2 * padding, h + 2 * padding) for x, y, w, h in regions]
 
     merged = list(expanded)
     changed = True
@@ -308,10 +299,7 @@ def merge_overlapping_regions(regions: list, padding: int = 20) -> list:
 
         merged = new_merged
 
-    return [
-        (x + padding, y + padding, w - 2 * padding, h - 2 * padding)
-        for x, y, w, h in merged
-    ]
+    return [(x + padding, y + padding, w - 2 * padding, h - 2 * padding) for x, y, w, h in merged]
 
 
 def draw_differences(
@@ -319,35 +307,65 @@ def draw_differences(
     differences: list,
     color: tuple = (0, 0, 255),
     thickness: int = 3,
+    aspect_ratio_threshold: float = 0.6,
 ) -> np.ndarray:
-    """标记差异区域"""
+    """
+    标记差异区域
+    根据差异区域的形状选择使用圆圈或矩形：
+    - 接近正方形的区域（宽高比在 threshold ~ 1/threshold 之间）使用圆圈
+    - 细长形状的区域使用矩形
+
+    Args:
+        img: 输入图片
+        differences: 差异区域列表 [(x, y, w, h), ...]
+        color: 标记颜色
+        thickness: 线条粗细
+        aspect_ratio_threshold: 宽高比阈值，低于此值使用矩形
+    """
     result = img.copy()
+    padding = 15  # 标记框与差异区域的边距
 
     for i, (x, y, w, h) in enumerate(differences):
         center_x = x + w // 2
         center_y = y + h // 2
-        radius = max(w, h) // 2 + 15
 
-        # 确保圆圈在图片范围内
-        radius = min(
-            radius,
-            min(
-                center_x,
-                center_y,
-                result.shape[1] - center_x,
-                result.shape[0] - center_y,
+        # 计算宽高比，判断使用圆圈还是矩形
+        aspect_ratio = min(w, h) / max(w, h) if max(w, h) > 0 else 1
+
+        if aspect_ratio >= aspect_ratio_threshold:
+            # 接近正方形，使用圆圈
+            radius = max(w, h) // 2 + padding
+
+            # 确保圆圈在图片范围内
+            radius = min(
+                radius,
+                min(
+                    center_x,
+                    center_y,
+                    result.shape[1] - center_x,
+                    result.shape[0] - center_y,
+                )
+                - 5,
             )
-            - 5,
-        )
-        radius = max(radius, 20)
+            radius = max(radius, 20)
 
-        cv2.circle(result, (center_x, center_y), radius, color, thickness)
+            cv2.circle(result, (center_x, center_y), radius, color, thickness)
+            text_y = max(20, center_y - radius - 8)
+        else:
+            # 细长形状，使用矩形
+            rect_x1 = max(0, x - padding)
+            rect_y1 = max(0, y - padding)
+            rect_x2 = min(result.shape[1] - 1, x + w + padding)
+            rect_y2 = min(result.shape[0] - 1, y + h + padding)
 
+            cv2.rectangle(result, (rect_x1, rect_y1), (rect_x2, rect_y2), color, thickness)
+            text_y = max(20, rect_y1 - 8)
+
+        # 绘制序号标签
         font = cv2.FONT_HERSHEY_SIMPLEX
         text = str(i + 1)
         text_size = cv2.getTextSize(text, font, 0.7, 2)[0]
         text_x = max(5, center_x - text_size[0] // 2)
-        text_y = max(20, center_y - radius - 8)
         cv2.putText(result, text, (text_x, text_y), font, 0.7, color, 2)
 
     return result
@@ -388,30 +406,21 @@ def process_screenshot(
     img1, img2 = extract_game_images(screenshot)
 
     # 检测差异
-    differences = find_differences(
-        img1, img2, min_area=min_area, diff_threshold=diff_threshold
-    )
+    differences = find_differences(img1, img2, min_area=min_area, diff_threshold=diff_threshold)
 
     # 对齐图片
     img1_aligned, img2_aligned = align_images(img1, img2)
 
     result = {
         "difference_count": len(differences),
-        "differences": [
-            {"index": i + 1, "x": x, "y": y, "width": w, "height": h}
-            for i, (x, y, w, h) in enumerate(differences)
-        ],
+        "differences": [{"index": i + 1, "x": x, "y": y, "width": w, "height": h} for i, (x, y, w, h) in enumerate(differences)],
         "image_size": {"width": img1_aligned.shape[1], "height": img1_aligned.shape[0]},
     }
 
     if return_images:
         # 标记差异
-        marked_img1 = draw_differences(
-            img1_aligned, differences, color=(0, 0, 255), thickness=3
-        )
-        marked_img2 = draw_differences(
-            img2_aligned, differences, color=(0, 255, 0), thickness=3
-        )
+        marked_img1 = draw_differences(img1_aligned, differences, color=(0, 0, 255), thickness=3)
+        marked_img2 = draw_differences(img2_aligned, differences, color=(0, 255, 0), thickness=3)
 
         # 拼接结果
         combined = np.hstack([marked_img1, marked_img2])
@@ -446,17 +455,11 @@ def save_result_images(
     # 加载和处理图片
     screenshot = load_image_from_bytes(image_bytes)
     img1, img2 = extract_game_images(screenshot)
-    differences = find_differences(
-        img1, img2, min_area=min_area, diff_threshold=diff_threshold
-    )
+    differences = find_differences(img1, img2, min_area=min_area, diff_threshold=diff_threshold)
 
     img1_aligned, img2_aligned = align_images(img1, img2)
-    marked_img1 = draw_differences(
-        img1_aligned, differences, color=(0, 0, 255), thickness=3
-    )
-    marked_img2 = draw_differences(
-        img2_aligned, differences, color=(0, 255, 0), thickness=3
-    )
+    marked_img1 = draw_differences(img1_aligned, differences, color=(0, 0, 255), thickness=3)
+    marked_img2 = draw_differences(img2_aligned, differences, color=(0, 255, 0), thickness=3)
     combined = np.hstack([marked_img1, marked_img2])
     heatmap = generate_heatmap(img1, img2)
 
@@ -473,10 +476,7 @@ def save_result_images(
 
     return {
         "difference_count": len(differences),
-        "differences": [
-            {"index": i + 1, "x": x, "y": y, "width": w, "height": h}
-            for i, (x, y, w, h) in enumerate(differences)
-        ],
+        "differences": [{"index": i + 1, "x": x, "y": y, "width": w, "height": h} for i, (x, y, w, h) in enumerate(differences)],
         "saved_files": {
             "combined": str(combined_path),
             "heatmap": str(heatmap_path),

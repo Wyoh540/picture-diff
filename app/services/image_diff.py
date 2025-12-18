@@ -34,87 +34,130 @@ def image_to_base64(img: np.ndarray, format: str = ".png") -> str:
 
 
 def extract_game_images(screenshot: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """从游戏截图中提取上下两张待比较的图片"""
+    """
+    从游戏截图中提取上下两张待比较的图片。
+
+    算法原理：
+    - 游戏"找不同"截图通常包含上下两张图片，中间有分隔区域
+    - 通过分析每一行像素的颜色方差来区分"内容区域"和"空白/分隔区域"
+    - 内容区域（图片）的颜色方差较高，空白区域的方差较低
+
+    Args:
+        screenshot: 输入的游戏截图，BGR格式的numpy数组
+
+    Returns:
+        tuple: (上半部分图片, 下半部分图片)
+    """
     height, width = screenshot.shape[:2]
 
-    # 计算每行的颜色方差
+    # ========== 第一步：计算每行的颜色方差 ==========
+    # 对于每一行，计算该行所有像素的标准差
+    # 标准差高表示该行颜色变化丰富（有实际图像内容）
+    # 标准差低表示该行颜色单一（可能是空白区域或纯色分隔线）
     row_variance = np.array([np.std(screenshot[y, :, :]) for y in range(height)])
 
-    # 平滑
+    # ========== 第二步：平滑方差曲线 ==========
+    # 使用滑动窗口平均来平滑方差曲线，消除噪声和局部波动
+    # kernel_size=5 表示使用5行的窗口进行平均
     kernel_size = 5
     row_variance_smooth = np.convolve(row_variance, np.ones(kernel_size) / kernel_size, mode="same")
 
-    # 找到高方差区域
+    # ========== 第三步：确定方差阈值 ==========
+    # 计算平均方差，并取其60%作为阈值
+    # 高于阈值的行被认为是"内容区域"，低于阈值的是"空白区域"
     mean_var = np.mean(row_variance_smooth)
     var_threshold = mean_var * 0.6
 
-    # 找到所有内容区域
-    content_regions = []
-    in_content = False
-    content_start = 0
+    # ========== 第四步：识别所有内容区域 ==========
+    # 通过状态机的方式扫描每一行，找出连续的高方差区域
+    content_regions = []  # 存储找到的内容区域，格式为 (起始行, 结束行)
+    in_content = False  # 标记当前是否在内容区域内
+    content_start = 0  # 当前内容区域的起始行
 
     for y in range(height):
         is_content = row_variance_smooth[y] > var_threshold
 
         if is_content and not in_content:
+            # 从空白区域进入内容区域：记录起始位置
             in_content = True
             content_start = y
         elif not is_content and in_content:
+            # 从内容区域进入空白区域：结束当前区域
             in_content = False
             region_height = y - content_start
+            # 只保留高度超过总高度15%的区域，过滤掉小的噪声区域
             if region_height > height * 0.15:
                 content_regions.append((content_start, y))
 
+    # 处理扫描结束时仍在内容区域的情况
     if in_content:
         region_height = height - content_start
         if region_height > height * 0.15:
             content_regions.append((content_start, height))
 
-    # 处理区域
+    # ========== 第五步：根据检测结果确定两张图片的区域 ==========
     if len(content_regions) >= 2:
-        content_regions.sort(key=lambda r: r[1] - r[0], reverse=True)
-        regions = content_regions[:2]
-        regions.sort(key=lambda r: r[0])
+        # 情况1：检测到两个或更多内容区域
+        # 选择最大的两个区域作为上下两张图片
+        content_regions.sort(key=lambda r: r[1] - r[0], reverse=True)  # 按区域大小降序排列
+        regions = content_regions[:2]  # 取最大的两个
+        regions.sort(key=lambda r: r[0])  # 按位置升序排列（上面的在前）
         region1, region2 = regions
+
     elif len(content_regions) == 1:
+        # 情况2：只检测到一个连续的内容区域
+        # 说明两张图片紧密相连，需要在中间找到分割点
         region = content_regions[0]
         region_start, region_end = region
         region_height = region_end - region_start
 
+        # 在区域的中间35%-65%范围内寻找分割点
+        # 分割点通常是两张图片之间的间隙，方差最低的位置
         mid_start = region_start + int(region_height * 0.35)
         mid_end = region_start + int(region_height * 0.65)
 
+        # 找到中间区域方差最小的位置作为分割点
         mid_variance = row_variance_smooth[mid_start:mid_end]
         split_offset = np.argmin(mid_variance)
         split_row = mid_start + split_offset
 
+        # 扩展分割区域：从分割点向两边扩展，找到完整的低方差分隔带
         split_threshold = row_variance_smooth[split_row] * 1.5
         split_start = split_row
         split_end = split_row
 
+        # 向上扩展分割区域
         for y in range(split_row, mid_start, -1):
             if row_variance_smooth[y] < split_threshold:
                 split_start = y
             else:
                 break
 
+        # 向下扩展分割区域
         for y in range(split_row, mid_end):
             if row_variance_smooth[y] < split_threshold:
                 split_end = y
             else:
                 break
 
+        # 上半图片：从区域开始到分割区域的上边界
+        # 下半图片：从分割区域的下边界到区域结束
         region1 = (region_start, split_start)
         region2 = (split_end, region_end)
+
     else:
+        # 情况3：未检测到明显的内容区域（异常情况）
+        # 使用默认的固定比例进行分割
+        # 假设上半图片在17%-48%的高度范围，下半图片在52%-83%的高度范围
         region1 = (int(height * 0.17), int(height * 0.48))
         region2 = (int(height * 0.52), int(height * 0.83))
 
-    # 提取区域
+    # ========== 第六步：提取并处理图片区域 ==========
+    # 根据计算出的区域范围裁剪图片
     img1_region = screenshot[region1[0] : region1[1], :]
     img2_region = screenshot[region2[0] : region2[1], :]
 
-    # 裁剪白色边框
+    # 裁剪图片周围的白色边框，得到干净的图片内容
     img1 = crop_white_borders(img1_region)
     img2 = crop_white_borders(img2_region)
 

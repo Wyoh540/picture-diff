@@ -1,80 +1,66 @@
 import { Link } from '@tanstack/react-router'
-
-import { useState } from 'react'
-import { Home, Menu, Monitor, ScanSearch, X } from 'lucide-react'
+import { Home, Menu, Monitor, ScanSearch } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+import { Separator } from '@/components/ui/separator'
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-
   return (
-    <>
-      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-          aria-label="打开菜单"
-        >
-          <Menu size={24} />
-        </button>
-        <h1 className="ml-4 text-xl font-semibold">
-          <Link to="/" className="flex items-center gap-2">
-            <ScanSearch size={28} className="text-cyan-400" />
-            <span>图片差异检测</span>
-          </Link>
-        </h1>
-      </header>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 items-center px-4">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="mr-2">
+              <Menu className="size-5" />
+              <span className="sr-only">打开菜单</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-72">
+            <SheetHeader>
+              <SheetTitle className="flex items-center gap-2">
+                <ScanSearch className="size-5 text-primary" />
+                导航菜单
+              </SheetTitle>
+            </SheetHeader>
+            <Separator className="my-4" />
+            <nav className="flex flex-col gap-2">
+              <Link to="/">
+                {({ isActive }) => (
+                  <Button
+                    variant={isActive ? 'default' : 'ghost'}
+                    className="w-full justify-start gap-3"
+                  >
+                    <Home className="size-4" />
+                    首页
+                  </Button>
+                )}
+              </Link>
+              <Link to="/screen">
+                {({ isActive }) => (
+                  <Button
+                    variant={isActive ? 'default' : 'ghost'}
+                    className="w-full justify-start gap-3"
+                  >
+                    <Monitor className="size-4" />
+                    手机屏幕
+                  </Button>
+                )}
+              </Link>
+            </nav>
+          </SheetContent>
+        </Sheet>
 
-      <aside
-        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <h2 className="text-xl font-bold">导航</h2>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-            aria-label="关闭菜单"
-          >
-            <X size={24} />
-          </button>
-        </div>
-
-        <nav className="flex-1 p-4 overflow-y-auto">
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Home size={20} />
-            <span className="font-medium">首页</span>
-          </Link>
-          <Link
-            to="/screen"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-purple-600 hover:bg-purple-700 transition-colors mb-2',
-            }}
-          >
-            <Monitor size={20} />
-            <span className="font-medium">手机屏幕</span>
-          </Link>
-        </nav>
-      </aside>
-
-      {/* 遮罩层 */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-    </>
+        <Link to="/" className="flex items-center gap-2">
+          <ScanSearch className="size-6 text-primary" />
+          <span className="font-semibold text-lg">图片差异检测</span>
+        </Link>
+      </div>
+    </header>
   )
 }

@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
+description: 这是一个前端 hey-api 客户端自动更新
 ---
 
-这是一个前端 hey-api 客户端自动更新规则
 
 - 前端调用后端API始终使用 hey-api 生成的客户端进行调用
 - 当后端API发生发生变更时，前端需运行 `npm run generate:api` 命令更新后端API, 再进行调用

@@ -45,13 +45,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <head>
         <HeadContent />
       </head>
-      <body>
-        <Header />
-        {children}
+      <body className="min-h-screen bg-background text-foreground antialiased">
+        <div className="relative flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">{children}</main>
+        </div>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
